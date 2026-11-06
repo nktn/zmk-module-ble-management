@@ -53,7 +53,9 @@ static struct profile_name_entry
 static struct zmk_rpc_custom_subsystem_meta ble_management_meta = {
     ZMK_RPC_CUSTOM_SUBSYSTEM_UI_URLS(
         "https://cormoran.github.io/zmk-module-ble-management/"),
-    .security = ZMK_STUDIO_RPC_HANDLER_UNSECURED,
+    // Secured: this subsystem can switch the active profile and clear bonds,
+    // so it must not work without a physical &studio_unlock.
+    .security = ZMK_STUDIO_RPC_HANDLER_SECURED,
 };
 
 /**
